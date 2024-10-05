@@ -62,7 +62,7 @@ const CodeEditor = () => {
               rightIcon={<Icon as={FaGithub} />}
               _hover={{ bg: "green.500" }}
             >
-              🫶 Support by giving a ⭐️ on
+              🫶 Support by following giving a ⭐️ on
             </Button>
           </Link>
 
