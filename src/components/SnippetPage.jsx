@@ -9,7 +9,10 @@ import {
   useClipboard,
   HStack,
 } from "@chakra-ui/react";
-
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { SiCodeforces, SiLeetcode } from "react-icons/si";
+import { SiCodechef } from "react-icons/si";
+import { Link } from "react-router-dom";
 const SnippetPage = () => {
   // Segment Tree snippet text
   const segmentTreeCode = `template <typename num_t>
@@ -649,8 +652,6 @@ string addStrings(string s1, string s2)
 // cout << "Result of adding strings: " << result << endl;
 `;
 
-
-
   const multiply_polynomials_code = `vector<int> karatsuba_multiply_polynomials(const vector<int> &a, const vector<int> &b)
 {
   int n = a.size();
@@ -857,34 +858,103 @@ void initsegsieve(int l, int r)
     useClipboard(dijkstraCode);
   const { hasCopied: hasCopiedMatrix, onCopy: onCopyMatrix } =
     useClipboard(matrix_code);
-  const { hasCopied: hasCopiedDSU, onCopy: onCopyDSU } =
-    useClipboard(DSU_code);
-  const { hasCopied: hasCopied_substring_hash_code, onCopy: onCopy_substring_hash_code } =
-    useClipboard(substring_hash_code);
+  const { hasCopied: hasCopiedDSU, onCopy: onCopyDSU } = useClipboard(DSU_code);
+  const {
+    hasCopied: hasCopied_substring_hash_code,
+    onCopy: onCopy_substring_hash_code,
+  } = useClipboard(substring_hash_code);
   const { hasCopied: hasCopied_hld_code, onCopy: onCopy_hld_code } =
     useClipboard(substring_hash_code);
-  const { hasCopied: hasCopied_add_multiply_strings, onCopy: onCopy_add_multiply_strings } =
-    useClipboard(add_multiply_strings_code);
-  const { hasCopied: hasCopied_multiply_polynomials, onCopy: onCopy_multiply_polynomials } =
-    useClipboard(multiply_polynomials_code);
+  const {
+    hasCopied: hasCopied_add_multiply_strings,
+    onCopy: onCopy_add_multiply_strings,
+  } = useClipboard(add_multiply_strings_code);
+  const {
+    hasCopied: hasCopied_multiply_polynomials,
+    onCopy: onCopy_multiply_polynomials,
+  } = useClipboard(multiply_polynomials_code);
   const { hasCopied: hasCopied_KMP, onCopy: onCopy_KMP } =
     useClipboard(KMP_code);
   const { hasCopied: hasCopied_ETF, onCopy: onCopy_ETF } =
     useClipboard(ETF_code);
   const { hasCopied: hasCopied_SOE, onCopy: onCopy_SOE } =
     useClipboard(SOE_code);
-  const { hasCopied: hasCopied_simple_segment_tree, onCopy: onCopy_simple_segment_tree } =
-    useClipboard(simple_segment_tree_code);
+  const {
+    hasCopied: hasCopied_simple_segment_tree,
+    onCopy: onCopy_simple_segment_tree,
+  } = useClipboard(simple_segment_tree_code);
 
   return (
     <Box p={8}>
-      <Heading as="h1" size="xl" mb={6}>
-        Competitive Programming Snippets Modified and Assembled by <u><a href="https://www.linkedin.com/in/gourabmodak/">spexcher</a></u>
+      <Heading as="h1" size="xl" mb={2}>
+        Competitive Programming Snippets by spexcher*
       </Heading>
 
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          //"margin-top": "0.2rem",
+          color: "#9AE6B4",
+          padding: "1rem",
+          borderRadius: "0.5rem",
+        }}
+      >
+        <Link
+          href="https://github.com/spexcher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub size={30} />
+        </Link>
+        <Link
+          href="https://www.codechef.com/users/spexcher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SiCodechef size={30} />
+        </Link>
+        <Link
+          href="https://www.linkedin.com/in/gourabmodak/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin size={30} />
+        </Link>
+        <Link
+          href="https://codeforces.com/profile/spexcher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SiCodeforces size={30} />
+        </Link>
+        <Link
+          href="https://leetcode.com/spexcher/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SiLeetcode size={30} />
+        </Link>
+        <Link
+          href="https://facebook.com/spexcher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaFacebook size={30} />
+        </Link>
+        <Link
+          href="https://instagram.com/spexcher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaInstagram size={30} />
+        </Link>
+      </div>
+      <Divider />
+      <Divider />
       <VStack align="start" spacing={8}>
-      {/* Simple Segment Tree */}
-      <Box width="100%">
+        {/* Simple Segment Tree */}
+        <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
               Simple Segment Tree
@@ -946,7 +1016,9 @@ void initsegsieve(int l, int r)
             </Button>
           </HStack>
           <Text mb={2}>
-          The Disjoint Set Union (DSU) data structure, which allows you to add edges to a graph and test whether two vertices of the graph are connected.
+            The Disjoint Set Union (DSU) data structure, which allows you to add
+            edges to a graph and test whether two vertices of the graph are
+            connected.
           </Text>
           <Code
             p={4}
@@ -989,20 +1061,18 @@ void initsegsieve(int l, int r)
         </Box>
 
         <Divider />
-        
+
         {/* Substring Hash Code */}
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            Substring Hash Code
+              Substring Hash Code
             </Heading>
             <Button size="sm" onClick={onCopy_substring_hash_code}>
               {hasCopied_substring_hash_code ? "Copied!" : "Copy"}
             </Button>
           </HStack>
-          <Text mb={2}>
-            Substring Hash in O(1)
-          </Text>
+          <Text mb={2}>Substring Hash in O(1)</Text>
           <Code
             p={4}
             rounded="md"
@@ -1054,9 +1124,7 @@ void initsegsieve(int l, int r)
               {hasCopiedMatrix ? "Copied!" : "Copy"}
             </Button>
           </HStack>
-          <Text mb={2}>
-            Common Matrix operations and exponentiation
-          </Text>
+          <Text mb={2}>Common Matrix operations and exponentiation</Text>
           <Code
             p={4}
             rounded="md"
@@ -1073,15 +1141,13 @@ void initsegsieve(int l, int r)
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            Add, Multiply Strings
+              Add, Multiply Strings
             </Heading>
             <Button size="sm" onClick={onCopy_add_multiply_strings}>
               {hasCopied_add_multiply_strings ? "Copied!" : "Copy"}
             </Button>
           </HStack>
-          <Text mb={2}>
-           Functions to Add and Multiply Strings
-          </Text>
+          <Text mb={2}>Functions to Add and Multiply Strings</Text>
           <Code
             p={4}
             rounded="md"
@@ -1098,15 +1164,13 @@ void initsegsieve(int l, int r)
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            Multiply Polynomials
+              Multiply Polynomials
             </Heading>
             <Button size="sm" onClick={onCopy_multiply_polynomials}>
               {hasCopied_multiply_polynomials ? "Copied!" : "Copy"}
             </Button>
           </HStack>
-          <Text mb={2}>
-          Multiply Polynomials by Karastuba Method
-          </Text>
+          <Text mb={2}>Multiply Polynomials by Karastuba Method</Text>
           <Code
             p={4}
             rounded="md"
@@ -1123,14 +1187,19 @@ void initsegsieve(int l, int r)
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            KMP
+              KMP
             </Heading>
             <Button size="sm" onClick={onCopy_KMP}>
               {hasCopied_KMP ? "Copied!" : "Copy"}
             </Button>
           </HStack>
           <Text mb={2}>
-          the Knuth-Morris-Pratt algorithm (or KMP algorithm) is a string-searching algorithm that searches for occurrences of a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters. 
+            the Knuth-Morris-Pratt algorithm (or KMP algorithm) is a
+            string-searching algorithm that searches for occurrences of a "word"
+            W within a main "text string" S by employing the observation that
+            when a mismatch occurs, the word itself embodies sufficient
+            information to determine where the next match could begin, thus
+            bypassing re-examination of previously matched characters.
           </Text>
           <Code
             p={4}
@@ -1148,14 +1217,20 @@ void initsegsieve(int l, int r)
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            Euler Totient Function
+              Euler Totient Function
             </Heading>
             <Button size="sm" onClick={onCopy_ETF}>
               {hasCopied_ETF ? "Copied!" : "Copy"}
             </Button>
           </HStack>
           <Text mb={2}>
-          In number theory, Euler's totient function counts the positive integers up to a given integer n that are relatively prime to n. It is written using the Greek letter phi as φ ( n ) , and may also be called Euler's phi function. In other words, it is the number of integers k in the range 1 ≤ k ≤ n for which the greatest common divisor gcd(n, k) is equal to 1. The integers k of this form are sometimes referred to as totatives of n.
+            In number theory, Euler's totient function counts the positive
+            integers up to a given integer n that are relatively prime to n. It
+            is written using the Greek letter phi as φ ( n ) , and may also be
+            called Euler's phi function. In other words, it is the number of
+            integers k in the range 1 ≤ k ≤ n for which the greatest common
+            divisor gcd(n, k) is equal to 1. The integers k of this form are
+            sometimes referred to as totatives of n.
           </Text>
           <Code
             p={4}
@@ -1173,14 +1248,15 @@ void initsegsieve(int l, int r)
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
             <Heading as="h2" size="lg" mb={2}>
-            Sieve of Eratostenes 
+              Sieve of Eratostenes
             </Heading>
             <Button size="sm" onClick={onCopy_SOE}>
               {hasCopied_SOE ? "Copied!" : "Copy"}
             </Button>
           </HStack>
           <Text mb={2}>
-          In mathematics, the sieve of Eratosthenes is an ancient algorithm for finding all prime numbers up to any given limit. 
+            In mathematics, the sieve of Eratosthenes is an ancient algorithm
+            for finding all prime numbers up to any given limit.
           </Text>
           <Code
             p={4}
@@ -1205,9 +1281,7 @@ void initsegsieve(int l, int r)
               {hasCopied_hld_code ? "Copied!" : "Copy"}
             </Button>
           </HStack>
-          <Text mb={2}>
-            Operations on trees !
-          </Text>
+          <Text mb={2}>Operations on trees !</Text>
           <Code
             p={4}
             rounded="md"
@@ -1220,7 +1294,6 @@ void initsegsieve(int l, int r)
           </Code>
         </Box>
         <Divider />
-
       </VStack>
     </Box>
   );
