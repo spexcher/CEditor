@@ -178,7 +178,7 @@ void solve()
     
     greet({ name: "Spexcher" });
   `,
-  python: `// ----------------------- Competitive Editor ---------------------------------
+  python: `# ----------------------- Competitive Editor ---------------------------------
 
  #
  #  ❤️ If you enjoy this project, please give it a star on GitHub!
@@ -189,7 +189,7 @@ void solve()
  #  Let's build something great together!
  #
 
- // -------------------- Happy Coding! ---------------------------------
+ # -------------------- Happy Coding! ---------------------------------
 
 import sys
 import os
