@@ -318,21 +318,13 @@ public class Main {
       }
     }
   `,
-  php: `// ----------------------- Competitive Editor ---------------------------------
+  php: `
+<?php
+$name = 'Spexcher';
+echo $name;
+?>
 
-/*
- *  ❤️ If you enjoy this project, please give it a star on GitHub!
- *  ⭐ https://github.com/spexcher/CEditor
- *  ↗️ Feel free to share it with others who might find it useful!
- * 
- *  Your support helps me improve and create more amazing projects!
- *  Let's build something great together!
- */
-
- // -------------------- Happy Coding! ---------------------------------
-
-
-  <?php\n\n$name = 'Spexcher';\necho $name;\n`,
+  `,
 };
 
 // // Now, you can access these snippets in your client-side code
