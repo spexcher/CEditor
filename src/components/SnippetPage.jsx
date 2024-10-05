@@ -110,6 +110,52 @@ struct max_t
     max_t lazy_op(max_t &v, int size) { return max_t(val + v.val); }
 };
 `;
+  const simple_segment_tree_code = `vector<int> segtree(4 * size);
+function<void(int, int, int, int)> build = [&](int index, int l, int r)
+{
+    if (l == r)
+    {
+        segtree[index] = arr[l];
+        return;
+    }
+    int mid = (l + r) / 2;
+    build(2 * index + 1, l, mid);
+    build(2 * index + 2, mid + 1, r);
+    segtree[index] = 0; // combine logic
+};
+function<void(int, int, int, int, int, int)> update = [&](int index, int l, int r, int pos, int val)
+{
+    if (l == r)
+    {
+        segtree[index] = val;
+        return;
+    }
+    int mid = (l + r) / 2;
+    if (pos <= mid)
+        update(2 * index + 1, l, mid, pos, val);
+    else
+        update(2 * index + 2, mid + 1, r, pos, val);
+    segtree[index] = 0; // apply logic
+};
+function<int(int, int, int, int, int, int)> query = [&](int index, int l, int r, int lq, int rq)
+{
+    if (lq > r || rq < l)
+    {
+        // No overlap
+        return 0; // or appropriate identity value (e.g., INT_MAX for min, 0 for sum)
+    }
+    if (lq <= l && rq >= r)
+    {
+        // Total overlap
+        return segtree[index];
+    }
+    int mid = (l + r) / 2;
+    int ans = 0;
+    int left = query(2 * index + 1, l, mid, lq, rq);
+    int right = query(2 * index + 2, mid + 1, r, lq, rq);
+    segtree[index] = 0; // combine logic
+};
+`;
 
   // Matrix snippet text
   const matrix_code = `struct matrix
@@ -827,6 +873,8 @@ void initsegsieve(int l, int r)
     useClipboard(ETF_code);
   const { hasCopied: hasCopied_SOE, onCopy: onCopy_SOE } =
     useClipboard(SOE_code);
+  const { hasCopied: hasCopied_simple_segment_tree, onCopy: onCopy_simple_segment_tree } =
+    useClipboard(simple_segment_tree_code);
 
   return (
     <Box p={8}>
@@ -835,6 +883,32 @@ void initsegsieve(int l, int r)
       </Heading>
 
       <VStack align="start" spacing={8}>
+      {/* Simple Segment Tree */}
+      <Box width="100%">
+          <HStack justifyContent="space-between" width="100%">
+            <Heading as="h2" size="lg" mb={2}>
+              Simple Segment Tree
+            </Heading>
+            <Button size="sm" onClick={onCopy_simple_segment_tree}>
+              {hasCopied_simple_segment_tree ? "Copied!" : "Copy"}
+            </Button>
+          </HStack>
+          <Text mb={2}>
+            A segment tree is a data structure that allows querying and updating
+            ranges of an array efficiently.
+          </Text>
+          <Code
+            p={4}
+            rounded="md"
+            bg="gray.800"
+            color="green.300"
+            display="block"
+            whiteSpace="pre-wrap"
+          >
+            {simple_segment_tree_code}
+          </Code>
+        </Box>
+        <Divider />
         {/* Segment Tree */}
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
@@ -915,7 +989,31 @@ void initsegsieve(int l, int r)
         </Box>
 
         <Divider />
-        
+        {/* HLD Code */}
+        <Box width="100%">
+          <HStack justifyContent="space-between" width="100%">
+            <Heading as="h2" size="lg" mb={2}>
+              Heavy Light Decomposition
+            </Heading>
+            <Button size="sm" onClick={onCopy_hld_code}>
+              {hasCopied_hld_code ? "Copied!" : "Copy"}
+            </Button>
+          </HStack>
+          <Text mb={2}>
+            Operations on trees !
+          </Text>
+          <Code
+            p={4}
+            rounded="md"
+            bg="gray.800"
+            color="green.300"
+            display="block"
+            whiteSpace="pre-wrap"
+          >
+            {hld_code}
+          </Code>
+        </Box>
+        <Divider />
         {/* Substring Hash Code */}
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
@@ -1121,30 +1219,7 @@ void initsegsieve(int l, int r)
         </Box>
 
         <Divider />
-        {/* HLD Code */}
-        <Box width="100%">
-          <HStack justifyContent="space-between" width="100%">
-            <Heading as="h2" size="lg" mb={2}>
-              Heavy Light Decomposition
-            </Heading>
-            <Button size="sm" onClick={onCopy_hld_code}>
-              {hasCopied_hld_code ? "Copied!" : "Copy"}
-            </Button>
-          </HStack>
-          <Text mb={2}>
-            Operations on trees !
-          </Text>
-          <Code
-            p={4}
-            rounded="md"
-            bg="gray.800"
-            color="green.300"
-            display="block"
-            whiteSpace="pre-wrap"
-          >
-            {hld_code}
-          </Code>
-        </Box>
+
       </VStack>
     </Box>
   );
