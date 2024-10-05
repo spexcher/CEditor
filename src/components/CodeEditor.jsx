@@ -5,7 +5,9 @@ import LanguageSelector from "./LanguageSelector";
 import { CODE_SNIPPETS } from "../constants";
 import Output from "./Output";
 import * as monaco from "monaco-editor";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { SiCodeforces, SiLeetcode } from "react-icons/si";
+import { SiCodechef } from "react-icons/si";
 const CodeEditor = () => {
   const editorRef = useRef();
   const [value, setValue] = useState("");
@@ -31,17 +33,19 @@ const CodeEditor = () => {
 
   const handleFormatCode = () => {
     if (editorRef.current) {
+      // Trigger the formatting action
       editorRef.current.getAction("editor.action.formatDocument").run();
       console.log("FOrmatting Done");
     }
   };
 
   useEffect(() => {
+    // Load the selected theme
     const loadTheme = async (theme) => {
       monaco.editor.setTheme(theme);
     };
 
-    loadTheme(theme); 
+    loadTheme(theme); // Apply the initial theme on mount
   }, [theme]);
 
   return (
@@ -62,10 +66,62 @@ const CodeEditor = () => {
               rightIcon={<Icon as={FaGithub} />}
               _hover={{ bg: "green.500" }}
             >
-              🫶 Support by following and giving a ⭐️ on
+              🫶 Support by giving a ⭐️ on
             </Button>
           </Link>
-
+          <div
+            style={{ display: "flex", gap: "20px", "margin-top": "1.2rem",color:"#9AE6B4",border:"1px solid #38A169",padding: "1rem",borderRadius:"0.5rem"}}
+          >
+            <Link
+              href="https://github.com/spexcher"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub size={30} />
+            </Link>
+            <Link
+              href="https://www.codechef.com/users/spexcher"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiCodechef size={30} />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/gourabmodak/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin size={30} />
+            </Link>
+            <Link
+              href="https://codeforces.com/profile/spexcher"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiCodeforces size={30} />
+            </Link>
+            <Link
+              href="https://leetcode.com/spexcher/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiLeetcode size={30} />
+            </Link>
+            <Link
+              href="https://facebook.com/spexcher"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook size={30} />
+            </Link>
+            <Link
+              href="https://instagram.com/spexcher"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram size={30} />
+            </Link>
+          </div>
           {/* Format Button */}
           {/* <Button mt={5} colorScheme="blue" onClick={handleFormatCode}>
             Format Code
