@@ -29,7 +29,7 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/spexcher/competitive-editor.git
+   git clone https://github.com/spexcher/CEditor.git
    ```
 
 2. Install dependencies:
