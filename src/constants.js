@@ -196,20 +196,25 @@ import os
 from collections import defaultdict
 from math import inf, sqrt, ceil, floor, pow
 
-# Fast input function
+# Fast input function to handle large inputs
 input = sys.stdin.read
 data = input().splitlines()
 
-def solve(data):
-    # Your logic here
-
-    
+def solve():
+    # Implement your solution logic here
+    pass
 
 if __name__ == "__main__":
-    t = 1 
-    # t = int(data[0])
+    t = 1  # Default number of test cases (change as per input structure)
+    
+    if data:  # Ensure data isn't empty
+        t = int(data[0])  # First line contains number of test cases
+
+    # Process each test case
+    idx = 1  # Start from the second line in data (first line is the number of test cases)
     for i in range(t):
-        solve(data)`,
+        solve()  # Call the solve function for each test case
+`'
   java: `// ----------------------- Competitive Editor ---------------------------------
 
 /*
