@@ -40,8 +40,11 @@ const Output = ({ editorRef, language }) => {
           mb={4}
           isLoading={isLoading}
           onClick={runCode}
+          p={8}
+          fontSize={50}
+          ml={200}
         >
-          🏃 Run 
+          ▶ Run
         </Button>
         <Text mb={2} fontSize="lg">
           Input
