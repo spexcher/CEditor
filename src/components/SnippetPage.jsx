@@ -915,31 +915,7 @@ void initsegsieve(int l, int r)
         </Box>
 
         <Divider />
-        {/* HLD Code */}
-        <Box width="100%">
-          <HStack justifyContent="space-between" width="100%">
-            <Heading as="h2" size="lg" mb={2}>
-              Heavy Light Decomposition
-            </Heading>
-            <Button size="sm" onClick={onCopy_hld_code}>
-              {hasCopied_hld_code ? "Copied!" : "Copy"}
-            </Button>
-          </HStack>
-          <Text mb={2}>
-            Operations on trees !
-          </Text>
-          <Code
-            p={4}
-            rounded="md"
-            bg="gray.800"
-            color="green.300"
-            display="block"
-            whiteSpace="pre-wrap"
-          >
-            {hld_code}
-          </Code>
-        </Box>
-        <Divider />
+        
         {/* Substring Hash Code */}
         <Box width="100%">
           <HStack justifyContent="space-between" width="100%">
@@ -1145,7 +1121,30 @@ void initsegsieve(int l, int r)
         </Box>
 
         <Divider />
-
+        {/* HLD Code */}
+        <Box width="100%">
+          <HStack justifyContent="space-between" width="100%">
+            <Heading as="h2" size="lg" mb={2}>
+              Heavy Light Decomposition
+            </Heading>
+            <Button size="sm" onClick={onCopy_hld_code}>
+              {hasCopied_hld_code ? "Copied!" : "Copy"}
+            </Button>
+          </HStack>
+          <Text mb={2}>
+            Operations on trees !
+          </Text>
+          <Code
+            p={4}
+            rounded="md"
+            bg="gray.800"
+            color="green.300"
+            display="block"
+            whiteSpace="pre-wrap"
+          >
+            {hld_code}
+          </Code>
+        </Box>
       </VStack>
     </Box>
   );
