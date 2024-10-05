@@ -214,7 +214,7 @@ if __name__ == "__main__":
     idx = 1  # Start from the second line in data (first line is the number of test cases)
     for i in range(t):
         solve()  # Call the solve function for each test case
-`'
+`,
   java: `// ----------------------- Competitive Editor ---------------------------------
 
 /*
