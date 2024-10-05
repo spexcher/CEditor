@@ -31,19 +31,17 @@ const CodeEditor = () => {
 
   const handleFormatCode = () => {
     if (editorRef.current) {
-      // Trigger the formatting action
       editorRef.current.getAction("editor.action.formatDocument").run();
       console.log("FOrmatting Done");
     }
   };
 
   useEffect(() => {
-    // Load the selected theme
     const loadTheme = async (theme) => {
       monaco.editor.setTheme(theme);
     };
 
-    loadTheme(theme); // Apply the initial theme on mount
+    loadTheme(theme); 
   }, [theme]);
 
   return (
