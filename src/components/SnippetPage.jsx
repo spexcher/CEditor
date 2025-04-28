@@ -900,55 +900,55 @@ void initsegsieve(int l, int r)
           borderRadius: "0.5rem",
         }}
       >
-        <Link
+        <a
           href="https://github.com/spexcher"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaGithub size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://www.codechef.com/users/spexcher"
           target="_blank"
           rel="noopener noreferrer"
         >
           <SiCodechef size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://www.linkedin.com/in/gourabmodak/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaLinkedin size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://codeforces.com/profile/spexcher"
           target="_blank"
           rel="noopener noreferrer"
         >
           <SiCodeforces size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://leetcode.com/spexcher/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <SiLeetcode size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://facebook.com/spexcher"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaFacebook size={30} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://instagram.com/spexcher"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaInstagram size={30} />
-        </Link>
+        </a>
       </div>
       <Divider />
       <Divider />
