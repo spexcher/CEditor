@@ -5,103 +5,8 @@ export const LANGUAGE_VERSIONS = {
   java: "15.0.2",
   csharp: "6.12.0",
   php: "8.2.3",
-  "c++": "10.2.0",
   cpp: "10.2.0",
 };
-
-// const fetchLanguageVersions = async () => {
-//   try {
-//     // Fetch all runtimes from the Piston API
-//     const response = await fetch("https://emkc.org/api/v2/piston/runtimes");
-//     const runtimes = await response.json();
-
-//     // Create a mapping of desired languages to their versions
-//     const languageVersions = {};
-
-//     // List of languages we are interested in
-//     const targetLanguages = [
-//       "cpp",
-//       "javascript",
-//       "typescript",
-//       "python",
-//       "java",
-//       "csharp",
-//       "php",
-//     ];
-
-    // runtimes.forEach((runtime) => {
-    //   console.log(runtime.aliases);
-    //   targetLanguages.forEach((language) => {
-    //     runtime.aliases.forEach((alias) => {
-    //       if(language==alias) languageVersions[language] = runtime.version;
-    //       break;
-    //     });
-    //     if (language in runtime.aliases || language == runtime.language) {
-    //       console.log(runtime.language);
-    //       console.log(runtime.version);
-    //       console.log(runtime.aliases);
-    //       languageVersions[language] = runtime.version;
-    //     }
-    //   });
-    // if (targetLanguages.includes(runtime.language) || targetLanguages in runtime.aliases) {
-    //   console.log(runtime.language)
-    //   console.log(runtime.version)
-    //   console.log( runtime.aliases)
-    //   languageVersions[runtime.language] = runtime.version;
-    // }
-//     const targetLanguageSet = new Set(targetLanguages);
-//     runtimes.forEach((runtime) => {
-//       const { language, version, aliases } = runtime; // Destructure properties for better readability
-
-//       // Check if the runtime's language or any of its aliases are in targetLanguages
-//       if (targetLanguageSet.has(language)) {
-//         console.log(language);
-//         console.log(version);
-//         console.log(aliases);
-//         languageVersions[language] = version;
-//       } else if (aliases.some((alias) => targetLanguageSet.has(alias))) {
-//         console.log(language);
-//         console.log(version);
-//         console.log(aliases);
-//         languageVersions[language] = version;
-//       }
-//     });
-
-//     languageVersions["cpp"] = languageVersions["c++"];
-
-//     // Return the final language version object
-//     return languageVersions;
-//   } catch (error) {
-//     console.error("Error fetching language versions:", error);
-//     return {};
-//   }
-// };
-
-// export const LANGUAGE_VERSIONS = {
-//   'c++':'10.2.0',
-//   javascript: "18.15.0",
-//   typescript: "5.0.3",
-//   python: "3.10.0",
-//   java: "15.0.2",
-//   csharp: "6.12.0",
-//   php: "8.2.3",
-
-// };
-// LANGUAGE_VERSIONS = fetchLanguageVersions();
-
-// export const LANGUAGE_VERSIONS;
-
-// Call the function and log the result
-// const initLanguageVersions = async () => {
-//   const languageVersions = await fetchLanguageVersions();
-//   console.log("Fetched Language Versions:", languageVersions);
-
-//   // Export the fetched versions
-//   return languageVersions;
-// };
-
-// // Initialize and export the LANGUAGE_VERSIONS
-// export const LANGUAGE_VERSIONS = await initLanguageVersions();
 
 export const CODE_SNIPPETS = {
   cpp: `// ----------------------- Competitive Editor ---------------------------------
@@ -326,7 +231,3 @@ echo $name;
 
   `,
 };
-
-// // Now, you can access these snippets in your client-side code
-// console.log(CODE_SNIPPETS.javascript);
-// console.log(CODE_SNIPPETS.python);
