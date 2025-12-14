@@ -1,30 +1,32 @@
 import { useState } from "react";
-import { Box, Button, Text, useToast, Textarea } from "@chakra-ui/react";
+import { Box, Button, Text, useToast, Textarea, VStack } from "@chakra-ui/react";
 import { executeCode } from "../api";
 
-const Output = ({ editorRef, language }) => {
-  // Receive input as a prop
+const Output = ({ editorRef, language, scrollRef }) => {
   const toast = useToast();
   const [output, setOutput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [input, setInput] = useState("");
+
   const runCode = async () => {
     const sourceCode = editorRef.current.getValue();
-    // if (!input) return;  // Check for input
     if (!sourceCode) return;
+    if (window.innerWidth < 768 && scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
     try {
       setIsLoading(true);
-      const { run: result } = await executeCode(language, sourceCode, input); // Pass input to the API
+      const { run: result } = await executeCode(language, sourceCode, input);
       setOutput(result.output.split("\n"));
-      result.stderr ? setIsError(true) : setIsError(false);
+      setIsError(!!result.stderr);
     } catch (error) {
-      console.log(error);
       toast({
-        title: "An error occurred.",
+        title: "Error",
         description: error.message || "Unable to run code",
         status: "error",
-        duration: 6000,
+        duration: 4000,
       });
     } finally {
       setIsLoading(false);
@@ -32,55 +34,52 @@ const Output = ({ editorRef, language }) => {
   };
 
   return (
-    <>
-      <Box w="40%">
-        <Button
-          variant="outline"
-          colorScheme="red"
-          mb={4}
-          isLoading={isLoading}
-          onClick={runCode}
-          p={8}
-          fontSize={50}
-          ml={200}
-        >
-          ▶ Run
-        </Button>
-        <Text mb={2} fontSize="lg">
-          Input
-        </Text>
+    <VStack align="stretch" spacing={4}>
+      <Button
+        variant="solid"
+        colorScheme="blue" 
+        isLoading={isLoading}
+        onClick={runCode}
+        size="lg"
+        width="100%"
+        height="60px"
+        fontSize="xl"
+        borderRadius="xl"
+      >
+        ▶ Run Code
+      </Button>
+
+      <Box>
+        <Text mb={2} fontWeight="bold" fontSize="sm" color="gray.400">INPUT (OPTIONAL)</Text>
         <Textarea
-          //height="20vh"
-          height="30vh"
-          mt={2}
-          //p={2}
-          color="#fff"
-          border="1px solid"
-          borderRadius={4}
+          height="120px"
+          bg="#0f0f0f"
           borderColor="#333"
-          overflow="auto"
-          placeholder="Enter input (If any)"
-          textDecoration="none"
+          placeholder="Enter input here..."
           onChange={(e) => setInput(e.target.value)}
-        ></Textarea>
-        <Text mb={2} fontSize="lg">
-          Output
-        </Text>
+        />
+      </Box>
+
+      <Box>
+        <Text mb={2} fontWeight="bold" fontSize="sm" color="gray.400">CONSOLE OUTPUT</Text>
         <Box
-          height="50vh"
-          p={2}
-          color={isError ? "red.400" : ""}
+          height={{ base: "300px", md: "50vh" }}
+          p={3}
+          color={isError ? "red.400" : "green.200"}
+          bg="#0f0f0f"
           border="1px solid"
-          borderRadius={4}
-          borderColor={isError ? "red.500" : "#333"}
+          borderColor={isError ? "red.800" : "#333"}
+          borderRadius="md"
           overflow="auto"
+          fontFamily="monospace"
+          fontSize="sm"
         >
           {output
             ? output.map((line, i) => <Text key={i}>{line}</Text>)
-            : 'Click "Run Code" to see the output here'}
+            : 'Terminal ready. Click "Run Code" to execute.'}
         </Box>
       </Box>
-    </>
+    </VStack>
   );
 };
 
