@@ -61,23 +61,24 @@ const CodeEditor = () => {
       spacing={6}
       p={{ base: 3, md: 6 }}
       align="flex-start"
-                Snippets
     >
+  
       <Box w={{ base: "100%", md: "60%" }}>
-
+        {/* Top Controls */}
         <Flex direction="column" gap={4} mb={4}>
           <HStack justify="space-between" wrap="wrap">
             <LanguageSelector language={language} onSelect={onSelect} />
 
             <Link href="/snippets" isExternal>
-              <Button size="lg" colorScheme="red" fontWeight="bold">
+              <Button size="lg" colorScheme="blue" fontWeight="bold">
+                Snippets
               </Button>
             </Link>
           </HStack>
 
-    
+         
           <Wrap spacing={4} justify={{ base: "center", md: "flex-start" }}>
-
+            {/* GitHub Star */}
             <Link href="https://github.com/spexcher/CEdItor" isExternal>
               <Button
                 leftIcon={<Icon as={FaGithub} boxSize={5} />}
@@ -98,7 +99,6 @@ const CodeEditor = () => {
                 Star on GitHub
               </Button>
             </Link>
-
             <HStack
               spacing={5}
               p={4}
@@ -165,6 +165,7 @@ const CodeEditor = () => {
             </HStack>
           </Wrap>
         </Flex>
+
         <Select
           onChange={handleThemeChange}
           value={theme}
@@ -201,6 +202,7 @@ const CodeEditor = () => {
           />
         </Box>
       </Box>
+
       <Box w={{ base: "100%", md: "40%" }} ref={outputSectionRef}>
         <Output
           editorRef={editorRef}
@@ -213,3 +215,4 @@ const CodeEditor = () => {
 };
 
 export default CodeEditor;
+
