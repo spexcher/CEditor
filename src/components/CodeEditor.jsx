@@ -1,28 +1,48 @@
+
 import { useRef, useState, useEffect } from "react";
-import { Box, Stack, HStack, Button, Link, Select, Icon, Flex, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  HStack,
+  Button,
+  Link,
+  Select,
+  Icon,
+  Flex,
+  Wrap,
+  Text,
+  Tooltip,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { SiCodechef, SiCodeforces, SiLeetcode } from "react-icons/si";
 import { Editor } from "@monaco-editor/react";
 import LanguageSelector from "./LanguageSelector";
 import { CODE_SNIPPETS } from "../constants";
 import Output from "./Output";
 import * as monaco from "monaco-editor";
-import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
-import { SiCodeforces, SiLeetcode, SiCodechef } from "react-icons/si";
 
 const CodeEditor = () => {
-  const editorRef = useRef();
-  const outputSectionRef = useRef(null); // Ref to scroll to output
+  const editorRef = useRef(null);
+  const outputSectionRef = useRef(null);
+
   const [value, setValue] = useState("");
   const [language, setLanguage] = useState("cpp");
   const [theme, setTheme] = useState("vs-dark");
+
+  const socialBg = useColorModeValue(
+    "linear(to-r, green.300, green.400)",
+    "linear(to-r, green.500, green.600)"
+  );
 
   const onMount = (editor) => {
     editorRef.current = editor;
     editor.focus();
   };
 
-  const onSelect = (language) => {
-    setLanguage(language);
-    setValue(CODE_SNIPPETS[language]);
+  const onSelect = (lang) => {
+    setLanguage(lang);
+    setValue(CODE_SNIPPETS[lang]);
   };
 
   const handleThemeChange = (e) => {
@@ -36,50 +56,141 @@ const CodeEditor = () => {
   }, [theme]);
 
   return (
-    <Stack direction={{ base: "column", md: "row" }} spacing={6} p={{ base: 2, md: 6 }} align="flex-start">
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      spacing={6}
+      p={{ base: 3, md: 6 }}
+      align="flex-start"
+                Snippets
+    >
       <Box w={{ base: "100%", md: "60%" }}>
-        {/* Responsive Header Controls */}
-        <Flex direction="column" gap={3} mb={4}>
+
+        <Flex direction="column" gap={4} mb={4}>
           <HStack justify="space-between" wrap="wrap">
             <LanguageSelector language={language} onSelect={onSelect} />
+
             <Link href="/snippets" isExternal>
-              <Button colorScheme="red" size="sm">Snippets</Button>
+              <Button size="lg" colorScheme="red" fontWeight="bold">
+              </Button>
             </Link>
           </HStack>
 
-          <Wrap spacing={2} justify={{ base: "center", md: "flex-start" }}>
+    
+          <Wrap spacing={4} justify={{ base: "center", md: "flex-start" }}>
+
             <Link href="https://github.com/spexcher/CEdItor" isExternal>
-              <Button colorScheme="green" size="xs" leftIcon={<Icon as={FaGithub} />}>
-                <Box as="span" display={{ base: "none", sm: "inline" }}>Star on GitHub</Box>
+              <Button
+                leftIcon={<Icon as={FaGithub} boxSize={5} />}
+                size="sm"
+                px={4}
+                py={2}
+                borderRadius="lg"
+                fontWeight="bold"
+                bgGradient="linear(to-r, blue.300, blue.400)"
+                color="black"
+                boxShadow="md"
+                _hover={{
+                  bgGradient: "linear(to-r, blue.400, blue.500)",
+                  color: "white",
+                }}
+                _active={{ transform: "scale(0.97)" }}
+              >
+                Star on GitHub
               </Button>
             </Link>
-            <HStack spacing={3} p={1.5} border="1px solid #38A169" borderRadius="md">
-                <Link href="https://github.com/spexcher" isExternal><Icon as={FaGithub} color="#9AE6B4" /></Link>
-                <Link href="https://www.linkedin.com/in/gourabmodak/" isExternal><Icon as={FaLinkedin} color="#9AE6B4" /></Link>
-                <Link href="https://leetcode.com/spexcher/" isExternal><Icon as={SiLeetcode} color="#9AE6B4" /></Link>
+
+            <HStack
+              spacing={5}
+              p={4}
+              wrap="wrap"
+              justify="center"
+              borderRadius="xl"
+              // bgGradient={socialBg}
+              bgGradient="linear(to-r, blue.300, blue.400)"
+              boxShadow="lg"
+            >
+              <Text fontWeight="bold" fontSize="lg" color="#0d140dff">
+                Find me here
+              </Text>
+
+              {[
+                {
+                  icon: FaGithub,
+                  label: "GitHub",
+                  link: "https://github.com/spexcher",
+                },
+                {
+                  icon: SiCodechef,
+                  label: "CodeChef",
+                  link: "https://www.codechef.com/users/spexcher",
+                },
+                {
+                  icon: FaLinkedin,
+                  label: "LinkedIn",
+                  link: "https://www.linkedin.com/in/gourabmodak/",
+                },
+                {
+                  icon: SiCodeforces,
+                  label: "Codeforces",
+                  link: "https://codeforces.com/profile/spexcher",
+                },
+                {
+                  icon: SiLeetcode,
+                  label: "LeetCode",
+                  link: "https://leetcode.com/spexcher/",
+                },
+                {
+                  icon: FaFacebook,
+                  label: "Facebook",
+                  link: "https://facebook.com/spexcher",
+                },
+                {
+                  icon: FaInstagram,
+                  label: "Instagram",
+                  link: "https://instagram.com/spexcher",
+                },
+              ].map(({ icon, label, link }) => (
+                <Tooltip label={label} key={label} hasArrow>
+                  <Link href={link} isExternal>
+                    <Icon
+                      as={icon}
+                      boxSize={8}
+                      color="#000000"
+                      transition="color 0.2s ease"
+                      _hover={{ color: "white" }}
+                    />
+                  </Link>
+                </Tooltip>
+              ))}
             </HStack>
           </Wrap>
         </Flex>
-
-        <Select onChange={handleThemeChange} value={theme} mb={4} size="sm">
+        <Select
+          onChange={handleThemeChange}
+          value={theme}
+          mb={4}
+          size="sm"
+          maxW="200px"
+        >
           <option value="vs">Light Theme</option>
           <option value="vs-dark">Dark Theme</option>
           <option value="hc-black">High Contrast</option>
         </Select>
-
-        {/* Editor Wrapper with guaranteed height */}
-        <Box 
-          height={{ base: "60vh", md: "75vh" }} 
-          border="1px solid #333" 
-          borderRadius="md" 
+        <Box
+          height={{ base: "60vh", md: "75vh" }}
+          border="1px solid"
+          borderColor="gray.700"
+          borderRadius="lg"
           overflow="hidden"
+          boxShadow="xl"
         >
           <Editor
             options={{
               minimap: { enabled: false },
               automaticLayout: true,
               wordWrap: "on",
-              padding: { top: 10 },
+              padding: { top: 12 },
+              fontSize: 14,
             }}
             theme={theme}
             language={language}
@@ -90,10 +201,12 @@ const CodeEditor = () => {
           />
         </Box>
       </Box>
-
-      {/* Output Section */}
       <Box w={{ base: "100%", md: "40%" }} ref={outputSectionRef}>
-        <Output editorRef={editorRef} language={language} scrollRef={outputSectionRef} />
+        <Output
+          editorRef={editorRef}
+          language={language}
+          scrollRef={outputSectionRef}
+        />
       </Box>
     </Stack>
   );
